@@ -101,8 +101,8 @@
  * The unit types can be used in combination with user-defined literals:
  *
  * ~~~~{.cpp}
- * metre operator "" _m(long double const op) {return metre{double(op)}};
- * second operator "" _s(long double const op) {return second{double(op)}};
+ * metre operator "" _m(long double const op) {return metre{double(op)};};
+ * second operator "" _s(long double const op) {return second{double(op)};};
  * typedef decltype(1._m/(1._s*1._s)) mps2;
  * mps2 const g = 9.81_m/(1._s*1._s);
  * ~~~~
