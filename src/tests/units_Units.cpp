@@ -11,13 +11,13 @@ using namespace units;
  * euclid
  */
 
-static_assert(euclid<3, 9>::value == 3,
+static_assert(euclid(3, 9) == 3,
               "Euclid's algorithm should return the GCD");
 
-static_assert(euclid<7, 13>::value == 1,
+static_assert(euclid(7, 13) == 1,
               "Euclid's algorithm should return the GCD");
 
-static_assert(euclid<21, 91>::value == 7,
+static_assert(euclid(21, 91) == 7,
               "Euclid's algorithm should return the GCD");
 
 /*

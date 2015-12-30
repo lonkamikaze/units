@@ -407,28 +407,16 @@ typedef unsigned long long uint;
  */
 
 /**
- * Implements Euclid's algorithm to find the GCD between two integers.
+ * Implements Euclid's algorithm to find the GCD between two unsigned integers.
  *
- * @tparam Lhs,Rhs
+ * @param a,b
  *	The values to get the GCD for
+ * @return
+ *	The GCD of a and b
  */
-template <uint Lhs, uint Rhs>
-struct euclid /** @cond */ : euclid<Rhs, Lhs % Rhs> {};
-
-/**
- * Terminates Euclid's algorithm.
- *
- * @tparam Gcd
- *	The GCD to return
- * @see euclid
- */
-template <uint Gcd>
-struct euclid<Gcd, 0> /** @endcond */ {
-	/**
-	 * The GCD of the two original values.
-	 */
-	static constexpr uint const value{Gcd};
-};
+constexpr uint euclid(uint const a, uint const b) {
+	return b ? euclid(b, a % b) : a;
+}
 
 /**
  * Compile time, self-minimising rational numbers.
@@ -443,13 +431,13 @@ struct rational {
 	 * The minimised numerator trait.
 	 */
 	static constexpr uint const numerator{
-	    Numerator / euclid<Numerator, Denominator>::value};
+	    Numerator / euclid(Numerator, Denominator)};
 
 	/**
 	 * The minimised denominator trait.
 	 */
 	static constexpr uint const denominator{
-	    Denominator / euclid<Numerator, Denominator>::value};
+	    Denominator / euclid(Numerator, Denominator)};
 
 	/**
 	 * The minimised version of the type, for comparisons.
